@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TZN Trusses — Pine Sawmill, Tzaneen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --char:#0e1524; --char2:#151e31; --line:rgba(255,255,255,.12);
+  --green:#17385a; --green2:#3d8fd1; --pine:#e8681d; --pine2:#f59a52;
+  --grey:#8d9499; --white:#f4f2ee;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--char);-webkit-text-size-adjust:100%}
+body{font-family:Barlow,system-ui,sans-serif;color:var(--white);background:var(--char);overflow-x:hidden;line-height:1.5}
+h1,h2,h3,.cond{font-family:"Barlow Condensed",Impact,sans-serif;text-transform:uppercase;line-height:.92;font-weight:700;letter-spacing:.005em}
+a{color:inherit}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(16px,4vw,48px);pointer-events:none}
+.nav>*{pointer-events:auto}
+.nav{transition:background .3s}
+.nav.solid{background:rgba(9,14,25,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:10px;padding-bottom:10px}
+.brand span,.pill{white-space:nowrap}
+section{scroll-margin-top:60px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:44px;height:30px;flex:none}
+.brand b{font-family:"Barlow Condensed";font-size:26px;letter-spacing:.02em;line-height:1;display:block}
+.brand small{display:block;font-size:9px;letter-spacing:.34em;text-transform:uppercase;opacity:.8;margin-top:2px}
+.pill{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:10px 16px;border:1px solid rgba(255,255,255,.55);border-radius:99px;backdrop-filter:blur(6px);background:rgba(18,21,23,.35)}
+.pill:hover{background:var(--pine);border-color:var(--pine);color:#fff}
+
+/* scroll journey */
+.track{position:relative;height:720vh}
+.scene{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:linear-gradient(#2c3a40 0%,#7c6a5a 48%,#d9a56d 62%,#3a2c22 63%,#231c17 100%)}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block}
+.shade{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(10,12,13,.55) 0%,rgba(10,12,13,0) 26%),
+  linear-gradient(0deg,rgba(10,12,13,.72) 0%,rgba(10,12,13,0) 44%)}
+.fade{position:absolute;inset:0;background:var(--char);opacity:0;pointer-events:none}
+
+.cap{position:absolute;left:clamp(18px,5vw,64px);right:clamp(18px,5vw,64px);bottom:clamp(40px,9vh,96px);max-width:640px;opacity:0;transform:translateY(24px);will-change:opacity,transform;pointer-events:none}
+.cap .k{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--pine2);margin-bottom:12px}
+.cap .k i{display:block;width:34px;height:2px;background:var(--pine)}
+.cap h2{font-size:clamp(44px,8.4vw,92px)}
+.cap p{margin-top:14px;font-size:clamp(15px,1.5vw,18px);max-width:440px;color:rgba(244,242,238,.84)}
+.cap.hero h1{font-size:clamp(60px,12.5vw,150px)}
+.cap.hero h1 em{font-style:normal;color:var(--pine)}
+.cap.hero{max-width:900px}
+
+.rail{position:absolute;right:clamp(12px,3vw,40px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.rail span{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;opacity:.4;display:flex;align-items:center;gap:8px;transition:opacity .3s}
+.rail span::after{content:"";width:14px;height:2px;background:currentColor;transition:width .3s}
+.rail span.on{opacity:1;color:var(--pine2)}
+.rail span.on::after{width:30px}
+@media(max-width:700px){.rail span{font-size:0;gap:0}.rail span::after{width:10px}.rail span.on::after{width:22px}}
+.hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);font-size:10px;letter-spacing:.3em;text-transform:uppercase;opacity:.75;display:flex;flex-direction:column;align-items:center;gap:6px}
+.hint::after{content:"";width:1px;height:22px;background:#fff;animation:drop 1.6s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* content */
+section{padding:clamp(64px,10vw,130px) clamp(18px,5vw,64px)}
+.wrap{max-width:1180px;margin:0 auto}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--pine2);margin-bottom:16px}
+.eyebrow i{width:34px;height:2px;background:var(--pine)}
+.big{font-size:clamp(46px,8vw,104px)}
+.big em{font-style:normal;color:var(--pine)}
+.lede{margin-top:20px;max-width:560px;font-size:clamp(16px,1.6vw,19px);color:rgba(244,242,238,.8)}
+
+.prices{margin-top:48px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1.5fr 1fr 1fr;align-items:center;gap:8px;padding:20px 0;border-bottom:1px solid var(--line)}
+.row.head{padding:12px 0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--grey)}
+.row h3{font-size:clamp(26px,3.6vw,40px)}
+.row .dim{font-size:13px;letter-spacing:.12em;color:var(--pine2);margin-top:4px}
+.row .pr{font-family:"Barlow Condensed";font-weight:600;font-size:clamp(26px,3.6vw,40px);text-align:right}
+.row .pr small{font-family:Barlow;font-size:11px;font-weight:500;letter-spacing:.12em;color:var(--grey);display:block;text-transform:uppercase}
+.row .span{grid-column:2/4}
+.note{margin-top:16px;font-size:13px;color:var(--grey)}
+
+.alt{background:var(--green);background:linear-gradient(180deg,#14304d,#0f2238)}
+.cards{margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
+.card{background:#122a44;padding:28px 24px 30px}
+.card svg{width:34px;height:34px;stroke:var(--pine2);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:28px;margin:18px 0 8px}
+.card p{font-size:14.5px;color:rgba(244,242,238,.76)}
+
+.steps{margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px 24px}
+.step{border-top:2px solid var(--pine);padding-top:16px}
+.step b{font-family:"Barlow Condensed";font-size:15px;letter-spacing:.2em;color:var(--pine2)}
+.step h3{font-size:28px;margin:8px 0}
+.step p{font-size:14.5px;color:rgba(244,242,238,.72)}
+
+.contact{background:#090e19}
+.cgrid{margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.cgrid a,.cgrid div{background:#090e19;padding:26px 24px;text-decoration:none;display:block}
+.cgrid small{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-bottom:10px}
+.cgrid strong{font-family:"Barlow Condensed";font-weight:600;font-size:clamp(24px,2.6vw,32px);line-height:1.1;display:block;word-break:break-word}
+.cgrid a:hover strong{color:var(--pine)}
+footer{padding:26px clamp(18px,5vw,64px);font-size:12px;color:var(--grey);background:#090e19;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+.vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 52%,rgba(0,0,0,.5) 100%)}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.1;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.bar{position:absolute;left:0;top:0;height:3px;width:100%;background:var(--pine);transform-origin:left;transform:scaleX(0)}
+#loader{position:fixed;inset:0;z-index:50;background:var(--char);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .7s,visibility .7s}
+#loader.done{opacity:0;visibility:hidden}
+#loader b{font-family:"Barlow Condensed",Impact,sans-serif;font-size:34px;letter-spacing:.08em}
+#loader i{width:160px;height:2px;background:rgba(255,255,255,.15);position:relative;overflow:hidden}
+#loader i::after{content:"";position:absolute;inset:0;background:var(--pine);animation:ld 1.1s infinite}
+@keyframes ld{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+.links{display:flex;gap:28px;margin-left:auto;margin-right:28px}
+.links a{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;opacity:.85}
+.links a:hover{color:var(--pine2);opacity:1}
+@media(max-width:800px){.links{display:none}}
+.why{background:var(--char2);padding-top:clamp(40px,6vw,70px);padding-bottom:clamp(40px,6vw,70px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.why .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 18px}
+.why div div{font-family:"Barlow Condensed",Impact,sans-serif;font-weight:600;font-size:22px;letter-spacing:.08em;text-transform:uppercase;line-height:1.05;padding-left:14px;border-left:2px solid var(--pine)}
+@media(prefers-reduced-motion:reduce){.rv{transition:none;opacity:1;transform:none}}
+
+.hero{position:relative;height:100vh;height:100svh;padding:0;overflow:hidden;background:var(--char)}
+.himg{position:absolute;inset:-4%;background:url(img/truck.jpg) 68% 50%/cover no-repeat;will-change:transform}
+.hshade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,14,25,.92) 0%,rgba(9,14,25,.6) 36%,rgba(9,14,25,0) 66%),linear-gradient(0deg,rgba(9,14,25,.85) 0%,rgba(9,14,25,0) 40%),linear-gradient(180deg,rgba(9,14,25,.6),rgba(9,14,25,0) 22%)}
+.hin{position:absolute;left:clamp(18px,5vw,64px);right:clamp(18px,5vw,64px);bottom:clamp(64px,11vh,120px);max-width:920px}
+.hin h1{font-size:clamp(46px,min(8.4vw,13.5vh),116px)}
+.hin h1 em{font-style:normal;color:var(--pine)}
+.hin p{margin-top:16px;max-width:460px;font-size:clamp(15px,1.5vw,18px);color:rgba(244,242,238,.88)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:14px 22px;background:var(--pine);color:#fff;border:1px solid var(--pine)}
+.btn.ghost{background:rgba(9,14,25,.35);border-color:rgba(255,255,255,.6)}
+.btn:hover{background:var(--green2);border-color:var(--green2)}
+@media(max-width:800px){.himg{inset:0 -4% 36% -4%;background-position:80% 50%}.hin .eyebrow{display:none}.hin h1{font-size:clamp(46px,13vw,64px)}.hin{bottom:56px}.hshade{background:linear-gradient(0deg,rgba(9,14,25,1) 0%,rgba(9,14,25,1) 40%,rgba(9,14,25,.55) 54%,rgba(9,14,25,0) 72%),linear-gradient(180deg,rgba(9,14,25,.7),rgba(9,14,25,0) 20%)}}
+.phead{display:grid;grid-template-columns:1.25fr 1fr;gap:44px;align-items:end}
+.phead img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-bottom:4px solid var(--pine)}
+@media(max-width:800px){.phead{grid-template-columns:1fr;gap:28px}}
+
+.track{height:520vh}
+.scene{background:var(--char)}
+.ph{position:absolute;left:0;top:0;max-width:none;transform-origin:0 0;will-change:transform;user-select:none;pointer-events:none}
+.tint{position:absolute;inset:0;background:rgba(9,14,25,.8);opacity:0;pointer-events:none}
+.panel{position:absolute;top:0;right:0;width:50%;height:100%;overflow:hidden;transform:translateX(102%);border-left:4px solid var(--pine);box-shadow:-30px 0 70px rgba(0,0,0,.55);background:var(--char);will-change:transform}
+.cshade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(9,14,25,.92) 0%,rgba(9,14,25,0) 50%),linear-gradient(180deg,rgba(9,14,25,.55),rgba(9,14,25,0) 20%)}
+.hshade{pointer-events:none}
+.hin{will-change:opacity,transform}
+@media(min-width:801px){.cap.half{max-width:42vw}.cap.half h2{font-size:clamp(40px,5.4vw,84px)}}
+@media(max-width:800px){.panel{width:100%;height:60%;border-left:0;border-bottom:4px solid var(--pine)}}
+@media(min-width:801px){.cshade{background:linear-gradient(90deg,rgba(9,14,25,.8) 0%,rgba(9,14,25,.35) 34%,rgba(9,14,25,0) 58%),linear-gradient(0deg,rgba(9,14,25,.9) 0%,rgba(9,14,25,0) 50%),linear-gradient(180deg,rgba(9,14,25,.55),rgba(9,14,25,0) 20%)}}
+</style>
+<link rel="preload" as="image" href="img/truck.jpg">
+</head>
+<body>
+
+<div id="loader"><b>TZN TRUSSES</b><i></i></div>
+<header class="nav">
+  <a class="brand" href="#top" aria-label="TZN Trusses">
+    <svg viewBox="0 0 44 30" aria-hidden="true"><path d="M2 20 16 6l8 8" fill="none" stroke="#e8681d" stroke-width="4"/><path d="M14 22 30 6l12 12" fill="none" stroke="#3d8fd1" stroke-width="4"/></svg>
+    <span><b>TZN TRUSSES</b><small>Pine sawmill</small></span>
+  </a>
+  <nav class="links"><a href="#products">Products</a><a href="#process">Process</a><a href="#contact">Contact</a></nav>
+  <a class="pill" href="#contact">Get a quote</a>
+</header>
+
+<div class="track" id="top">
+  <div class="scene">
+    <img class="ph" id="truck" src="img/truck.jpg" alt="Timber truck loaded with pine logs on a dirt road at sunset">
+    <div class="tint" id="tint"></div>
+    <div class="panel" id="panel"><img class="ph" id="timber" src="img/timber.jpg" alt="Stacked pine timber with roof trusses behind"></div>
+    <div class="hshade" id="hshade"></div><div class="cshade"></div><div class="vig"></div><div class="grain"></div>
+
+    <div class="hin" id="hin">
+      <div class="eyebrow"><i></i>Tzaneen · Limpopo · South Africa</div>
+      <h1>Built different.<br><em>Built to last.</em></h1>
+      <p>A working pine sawmill supplying kappa, purlins, brandering, beams and roof-truss timber to builders, farms and manufacturers.</p>
+      <div class="cta"><a class="btn" href="#products">Products &amp; prices</a><a class="btn ghost" href="#contact">Get a quote</a></div>
+    </div>
+
+    <div class="cap" data-a="0.13" data-b="0.30">
+      <div class="k"><i></i>01 — Delivery</div>
+      <h2>Logs arrive<br>by the truckload.</h2>
+      <p>Heavy-duty timber trucks bring pine logs in from the plantations to the mill gate.</p>
+    </div>
+    <div class="cap" data-a="0.35" data-b="0.50">
+      <div class="k"><i></i>02 — Log yard</div>
+      <h2>Raw pine.<br>Sorted for the saw.</h2>
+      <p>Every load is offloaded and sorted in the yard, ready to feed the mill.</p>
+    </div>
+    <div class="cap half" data-a="0.60" data-b="0.76">
+      <div class="k"><i></i>03 — Sawmill</div>
+      <h2>Cut to<br>dimension.</h2>
+      <p>Industrial saws turn round logs into kappa, purlins, brandering, beams and truss timber.</p>
+    </div>
+    <div class="cap half" data-a="0.80" data-b="1.2">
+      <div class="k"><i></i>04 — Stacked</div>
+      <h2>Stacked neat.<br>Ready to load.</h2>
+      <p>Finished timber is sorted by size and stacked for collection or delivery.</p>
+    </div>
+
+    <div class="rail" aria-hidden="true"><span>Delivery</span><span>Log yard</span><span>Sawmill</span><span>Stacked</span></div>
+    <div class="hint" id="hint">Scroll</div>
+    <div class="bar" id="bar"></div>
+  </div>
+</div>
+
+<main>
+<section id="products">
+  <div class="wrap">
+    <div class="phead"><div>
+    <div class="eyebrow"><i></i>Products &amp; prices</div>
+    <h2 class="big">Sawmill<br><em>supplied.</em></h2>
+    <p class="lede">Pine timber cut on site in standard construction sizes. Prices are per length.</p>
+    </div><img src="img/timber.jpg" alt="Stacked TZN Trusses timber with roof trusses behind" loading="lazy"></div>
+    <div class="prices">
+      <div class="row head"><span>Product</span><span style="text-align:right">6 m</span><span style="text-align:right">6,6 m</span></div>
+      <div class="row"><div><h3>Kappa</h3><div class="dim">114 × 38</div></div><div class="pr">R108</div><div class="pr">R112</div></div>
+      <div class="row"><div><h3>Purlin</h3><div class="dim">76 × 50</div></div><div class="pr">R108</div><div class="pr">R112</div></div>
+      <div class="row"><div><h3>Brandering</h3><div class="dim">38 × 38</div></div><div class="pr">R38</div><div class="pr">R41</div></div>
+      <div class="row"><div><h3>Beams</h3><div class="dim">152 × 38</div></div><div class="pr span">R180</div></div>
+      <div class="row"><div><h3>Beams</h3><div class="dim">228 × 38</div></div><div class="pr span">R270</div></div>
+    </div>
+    <p class="note">Prices can change — phone or email to confirm the current price and stock before you order.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="eyebrow"><i></i>More from the mill</div>
+    <h2 class="big">Nothing<br>goes to waste.</h2>
+    <div class="cards">
+      <div class="card"><svg viewBox="0 0 34 34"><path d="M3 27 17 7l14 20zM9 27l8-11 8 11M17 7v20"/></svg><h3>Roof trusses</h3><p>Sawmill-supplied roof trusses, made from our own timber.</p></div>
+      <div class="card"><svg viewBox="0 0 34 34"><path d="M4 12h26v5H4zM4 20h26v5H4zM8 12v5M20 20v5"/></svg><h3>Construction timber</h3><p>Structural pine in the common building sizes.</p></div>
+      <div class="card"><svg viewBox="0 0 34 34"><path d="M4 27c4-9 8-13 13-13s9 4 13 13zM13 9h.1M21 6h.1M17 11h.1M24 11h.1"/></svg><h3>Sawdust &amp; shavings</h3><p>For animal bedding, mulch and compost.</p></div>
+      <div class="card"><svg viewBox="0 0 34 34"><path d="M5 24 15 8l5 9M14 26l8-12 7 12zM3 26h28"/></svg><h3>Offcuts &amp; by-products</h3><p>Wood offcuts and other mill by-products.</p></div>
+      <div class="card"><svg viewBox="0 0 34 34"><circle cx="11" cy="17" r="7"/><circle cx="11" cy="17" r="3"/><path d="M11 10h14a7 7 0 0 1 0 14H11"/></svg><h3>Raw timber</h3><p>Raw pine material for manufacturers.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="eyebrow"><i></i>How the mill runs</div>
+    <h2 class="big">From log<br>to <em>load.</em></h2>
+    <div class="steps">
+      <div class="step"><b>01</b><h3>Log deliveries</h3><p>Pine logs arrive on heavy-duty timber trucks.</p></div>
+      <div class="step"><b>02</b><h3>Sorting &amp; storage</h3><p>Logs are offloaded, sorted and stored in the yard.</p></div>
+      <div class="step"><b>03</b><h3>Cutting</h3><p>Industrial machinery cuts each log to dimension.</p></div>
+      <div class="step"><b>04</b><h3>Sorting &amp; stacking</h3><p>Timber is sorted by size and stacked for dispatch.</p></div>
+      <div class="step"><b>05</b><h3>Waste management</h3><p>Sawdust, shavings and offcuts are collected and sold on.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="why"><div class="wrap"><div><div>Sawmill<br>supplied</div></div><div><div>Quality<br>timber</div></div><div><div>Precision<br>made</div></div><div><div>Reliable<br>deliveries</div></div><div><div>Built on<br>trust</div></div></div></section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow"><i></i>Contact</div>
+    <h2 class="big">Need timber?<br><em>Talk to the mill.</em></h2>
+    <div class="cgrid">
+      <a href="tel:+27608881594"><small>Phone</small><strong>060 888 1594</strong></a>
+      <a href="tel:+27764492766"><small>Phone</small><strong>076 449 2766</strong></a>
+      <a href="mailto:tzntrusses@gmail.com"><small>Email</small><strong>tzntrusses@gmail.com</strong></a>
+      <div><small>Find us</small><strong>501 Moedersfontein, Deer Park Road, Tzaneen 0850</strong></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer><span>TZN Trusses — Sawmill supplied roof trusses</span><span>Tzaneen, Limpopo, South Africa</span></footer>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var L=$('loader'),ready=function(){L.classList.add('done')}; setTimeout(ready,4500);
+  var track=document.querySelector('.track'),scene=document.querySelector('.scene'),nav=document.querySelector('.nav');
+  var truck=$('truck'),timber=$('timber'),panel=$('panel'),tint=$('tint'),hshade=$('hshade'),hin=$('hin'),hint=$('hint'),bar=$('bar');
+  if(truck.complete) ready(); else { truck.addEventListener('load',ready); truck.addEventListener('error',ready); }
+  var caps=[].map.call(document.querySelectorAll('.cap'),function(el){return{el:el,a:+el.dataset.a,b:+el.dataset.b}});
+  var rail=[].slice.call(document.querySelectorAll('.rail span')), railR=[[.11,.33],[.33,.53],[.53,.78],[.78,1.01]];
+  function clamp(x,a,b){return Math.min(b===undefined?1:b,Math.max(a===undefined?0:a,x))}
+  function sm(t){return t*t*(3-2*t)}
+  /* camera framings: [progress, focusX, focusY, zoom, anchorX, anchorY] */
+  var KL=[[0,.60,.50,1,.5,.5],[.10,.62,.48,1.05,.55,.5],[.27,.68,.44,1.3,.62,.5],[.36,.50,.42,1.34,.6,.5],[.49,.30,.40,1.52,.6,.5],[.62,.22,.42,1.5,.27,.5],[1,.15,.42,1.6,.26,.5]];
+  var KP=[[0,.80,.45,.64,.5,0],[.10,.80,.45,1,.5,.4],[.27,.76,.45,1.1,.5,.4],[.37,.52,.42,1,.5,.4],[.49,.36,.40,1.15,.5,.38],[1,.25,.40,1.2,.5,.4]];
+  var KT=[[.5,.5,.24,1.1,.5,.5],[.76,.5,.30,1.18,.5,.5],[.87,.52,.70,1.28,.5,.5],[1,.52,.78,1.4,.5,.5]];
+  function at(K,p){
+    var i=0; while(i<K.length-2&&p>K[i+1][0])i++;
+    var a=K[i],b=K[i+1],t=sm(clamp((p-a[0])/(b[0]-a[0]))),o=[];
+    for(var j=1;j<6;j++)o.push(a[j]+(b[j]-a[j])*t); return o;
+  }
+  function place(img,W,H,k,breath){
+    var iw=img.naturalWidth,ih=img.naturalHeight; if(!iw)return;
+    var s=Math.max(W/iw,H/ih)*k[2]*breath,w=iw*s,h=ih*s;
+    var tx=k[3]*W-k[0]*w,ty=k[4]*H-k[1]*h;
+    tx=w>=W?clamp(tx,W-w,0):(W-w)/2; ty=h>=H?clamp(ty,H-h,0):0;
+    img.style.transform='translate3d('+tx.toFixed(2)+'px,'+ty.toFixed(2)+'px,0) scale('+s.toFixed(5)+')';
+  }
+  function prog(){var r=track.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight))}
+  var cur=prog(),last=performance.now(),time=0;
+  function draw(p){
+    var W=scene.clientWidth,H=scene.clientHeight,narrow=W<=800,portrait=W/H<.9;
+    var breath=1+.006*(1+Math.sin(time*.45));
+    place(truck,W,H,at(portrait?KP:KL,p),breath);
+    var pt=sm(clamp((p-.5)/.1));
+    panel.style.transform='translateX('+((1-pt)*102).toFixed(2)+'%)';
+    tint.style.opacity=pt;
+    place(timber,panel.clientWidth,panel.clientHeight,at(KT,p),breath);
+    var ho=clamp(1-p/.07);
+    hin.style.opacity=ho; hin.style.transform='translateY('+(-(1-ho)*40)+'px)'; hin.style.pointerEvents=ho>.5?'auto':'none';
+    hshade.style.opacity=ho; hint.style.opacity=ho*.75;
+    for(var i=0;i<caps.length;i++){var c=caps[i],a=clamp((p-c.a)/.035),o=clamp((c.b-p)/.035);
+      c.el.style.opacity=Math.min(a,o); c.el.style.transform='translateY('+((1-a)*28-(1-o)*28)+'px)';}
+    for(i=0;i<rail.length;i++)rail[i].classList.toggle('on',p>=railR[i][0]&&p<railR[i][1]);
+    bar.style.transform='scaleX('+p+')';
+  }
+  function frame(now){
+    requestAnimationFrame(frame);
+    var dt=Math.min(.05,(now-last)/1000); last=now; time+=dt;
+    var r=track.getBoundingClientRect(); nav.classList.toggle('solid',r.bottom<70);
+    if(r.bottom<-50)return;
+    var t=prog(); cur+=(t-cur)*Math.min(1,dt*7); if(Math.abs(t-cur)<.00005)cur=t;
+    draw(cur);
+  }
+  window.__seek=function(p){cur=p;draw(p)};
+  requestAnimationFrame(frame);
+
+  var els=document.querySelectorAll('main .eyebrow,main .big,main .lede,main .row,main .card,main .step,main .cgrid>*,main .why .wrap>div,main .note');
+  [].forEach.call(els,function(e,i){e.classList.add('rv');e.style.transitionDelay=(i%5)*60+'ms'});
+  function chk(){for(var i=0;i<els.length;i++){var e=els[i];if(e.classList.contains('in'))continue;var r=e.getBoundingClientRect();if(r.top<innerHeight*.94&&r.bottom>0)e.classList.add('in')}}
+  addEventListener('scroll',chk,{passive:true});addEventListener('resize',chk);setInterval(chk,400);chk();
+})();
+</script>
+</body>
+</html>
